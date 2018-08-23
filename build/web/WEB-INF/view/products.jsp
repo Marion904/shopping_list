@@ -17,7 +17,7 @@
         <title>Shopping list</title>
     <table border="1">        
         
-        Class.forName("com.mysql.jdbc.Driver"); 
+        
         <sql:query var="result" dataSource="jdbc/shopping_list" >
             SELECT name,description,quantity,userId FROM PRODUCT
         </sql:query>
