@@ -7,6 +7,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <html>
@@ -15,7 +16,9 @@
         <link rel="stylesheet" type="text/css" href="style.css">
         <title>Shopping list</title>
     <table border="1">        
-        <sql:query var="result" dataSource="jdbc:mysql://shopping_list">
+        
+        Class.forName("com.mysql.jdbc.Driver"); 
+        <sql:query var="result" dataSource="jdbc/shopping_list" >
             SELECT name,description,quantity,userId FROM PRODUCT
         </sql:query>
             
