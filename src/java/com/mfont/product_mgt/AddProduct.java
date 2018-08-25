@@ -1,3 +1,4 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -6,6 +7,7 @@
 package com.mfont.product_mgt;
 
 import com.mfont.model.Product;
+import static com.oracle.util.Checksums.update;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
@@ -34,10 +36,11 @@ public class AddProduct extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     private static final String VIEW_PAGE_URL="/index.jsp";
+    private static final String VIEW_RESULT_URL="/product.jsp";
     private static final String FIELD_CAT="category";
     private static final String FIELD_PDT="product";
     private static final String FIELD_DESC="description";
-    private static final String FIELD_QTY="category";
+    private static final String FIELD_QTY="quantity";
     private static final String ERROR_PDT="Il faut au moins indiquer le nom du produit";
     private String category,name,description;
     private float quantity;
@@ -71,6 +74,7 @@ public class AddProduct extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.setAttribute("errorStatus", true);
+        request.setAttribute("addedProduct",false);
         response.getWriter().append("Redirecting to form...");
         this.getServletContext().getRequestDispatcher(VIEW_PAGE_URL).forward(request, response);
         //processRequest(request, response);
@@ -93,16 +97,22 @@ public class AddProduct extends HttpServlet {
         name= request.getParameter(FIELD_PDT);
         description= request.getParameter(FIELD_DESC);
         quantity= Float.parseFloat(request.getParameter(FIELD_QTY));
-        HashMap<String, String> errors=new HashMap<String,String>();
+        HashMap<String, String> errors=new HashMap<>();
+        HashMap<String, Product> products=new HashMap<>();
 
-        if (name.equals(null)){
+        if (name==null){
             errors.put(FIELD_PDT,ERROR_PDT);
             request.setAttribute("errors",errors);
             request.setAttribute("actionMessage","Problème dans la saisie");
+            
         }else{
             Product product = new Product(category,name,description,quantity);
+            //products.put(name,product);
             request.setAttribute("errorStatus",false);
-            request.setAttribute(name, this);
+            request.setAttribute("addedProduct",true);
+            request.setAttribute("product",product);
+            request.setAttribute("user",1);
+            
         }
         
         

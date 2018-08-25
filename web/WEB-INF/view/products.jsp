@@ -15,42 +15,41 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" type="text/css" href="style.css">
         <title>Shopping list</title>
-    <table border="1">        
-        
-        
-        <sql:query var="result" dataSource="jdbc/shopping_list" >
-            SELECT name,description,quantity,userId FROM PRODUCT
-        </sql:query>
-            
-        <table border="1">
-            <!-- column headers -->
-            <thead>
-                <tr>
-                    <c:forEach var="columnName" items="${result.columnNames}">
-                        <th><c:out value="${columnName}"/></th>
-                    </c:forEach>
-                    <th>+</th>
-                    <th>-</th>
-                    <th>Vider</th>
-                </tr>
-            </thead>
-            <!-- column data -->
-            <tbody>
-            <c:forEach var="row" items="${result.rowsByIndex}">
-                <tr>
-                    <c:forEach var="column" items="${row}">
-                        <td><c:out value="${column}"/></td>
-                    </c:forEach>
-                    <td>+</td>
-                    <td>-</td>
-                    <td>Vider</td>
-                </tr>
-            </c:forEach>
-            </tbody>
-        </table>
-
     </head>
     <body>
+        <table border="1">        
 
+            <sql:query var="result" dataSource="jdbc/shopping_list" >
+                SELECT id,name,description,quantity,userId FROM PRODUCT
+            </sql:query>
+
+            <table border="1">
+                <!-- column headers -->
+                <thead>
+                    <tr>
+                        <c:forEach var="columnName" items="${result.columnNames}">
+                            <th><c:out value="${columnName}"/></th>
+                        </c:forEach>
+                        <th>+</th>
+                        <th>-</th>
+                        <th>Vider</th>
+                    </tr>
+                </thead>
+                <!-- column data -->
+                <tbody>
+                <c:forEach var="row" items="${result.rowsByIndex}">
+                    <tr>
+                        <c:forEach var="column" items="${row}">
+                            <td><c:out value="${column}"/></td>
+                            <td>+</td>
+                            <td>-</td>
+                            <td>modifier</td>
+                            <td>Vider</td>
+                        </c:forEach>
+                        
+                    </tr>
+                </c:forEach>
+                </tbody>
+            </table>
     </body>
 </html>

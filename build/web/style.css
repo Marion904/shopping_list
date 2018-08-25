@@ -50,3 +50,8 @@ a:link:hover {
    font-weight: normal;
    text-decoration: underline;
 }
+
+.description{
+    font-size:smaller;
+    font-style:italic;
+}

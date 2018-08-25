@@ -5,14 +5,14 @@
         <group>
             <file>file:/home/accueil/NetBeansProjects/shopping_list/nbproject/build-impl.xml</file>
             <file>file:/home/accueil/NetBeansProjects/shopping_list/web/index.jsp</file>
-            <file>file:/home/accueil/NetBeansProjects/shopping_list/web/style.css</file>
-            <file>file:/home/accueil/NetBeansProjects/shopping_list/web/WEB-INF/product/form.jsp</file>
             <file>file:/home/accueil/NetBeansProjects/shopping_list/src/java/com/mfont/product_mgt/AddProduct.java</file>
-            <file>file:/home/accueil/NetBeansProjects/shopping_list/web/WEB-INF/glassfish-resources.xml</file>
             <file>file:/home/accueil/NetBeansProjects/shopping_list/web/WEB-INF/view/products.jsp</file>
+            <file>file:/home/accueil/NetBeansProjects/shopping_list/web/WEB-INF/view/form.jsp</file>
+            <file>file:/home/accueil/NetBeansProjects/shopping_list/src/java/com/mfont/product_mgt/JavaMySQLInsertProduct.java</file>
             <file>file:/home/accueil/NetBeansProjects/shopping_list/src/java/com/mfont/model/Product.java</file>
             <file>file:/home/accueil/NetBeansProjects/shopping_list/web/WEB-INF/menu/menu.jsp</file>
             <file>file:/home/accueil/NetBeansProjects/shopping_list/src/java/com/mfont/product_mgt/Cancel.java</file>
+            <file>file:/home/accueil/NetBeansProjects/shopping_list/web/product.jsp</file>
             <file>file:/home/accueil/NetBeansProjects/shopping_list/web/WEB-INF/web.xml</file>
         </group>
     </open-files>

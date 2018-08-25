@@ -19,9 +19,14 @@
         
         <c:choose>
             <c:when test="${errorStatus}">
-                <c:import url="/WEB-INF/product/form.jsp"/>
+                <c:import url="/WEB-INF/view/form.jsp"/>
             </c:when>
             <c:otherwise>
+                <c:choose>
+                    <c:when test="${addedProduct}">
+                        <c:import url="/WEB-INF/view/product.jsp"/>
+                    </c:when>
+                </c:choose>
                 <c:import url="/WEB-INF/view/products.jsp"/>
                 <c:import url="/WEB-INF/menu/menu.jsp"/>    
             </c:otherwise>
