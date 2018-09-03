@@ -16,26 +16,27 @@
     </head>
     <body>
         <sql:update var="result" dataSource="jdbc/shopping_list">
-         INSERT INTO PRODUCT (name, description, quantity,category,userId)
-         VALUES ("${product.name}","${product.description}","${product.quantity}","${product.category}",${user});
+         INSERT INTO PRODUCT (name, description, quantity,category,userId,un)
+         VALUES ("${product.name}","${product.description}",${product.quantity},"${product.category}",${user},"${product.unit}");
         </sql:update>
          <table>
             <tr>
-                <th>Produit ajouté : </th>
-                <th>${product.name}</th>
+                <th>Dernier ajout : </th>
+                <th colspan="2">${product.name}</th>
             </tr>
             <tr>
                 <td><strong>Categorie </strong></td>
-                <td><span class="description">${product.category}</span></td>
+                <td colspan="2"><span class="description">${product.category}</span></td>
             </tr>
             <tr>
                 <td><strong>Description: </strong></td>
-                <td><strong>${product.description}</strong>
+                <td colspan="2"><strong>${product.description}</strong>
 
             </tr>
             <tr>
                 <td><strong>Quantité désirée: </strong></td>
                 <td><strong>${product.quantity}</strong>
+                <td><strong>${product.unit}</strong>
             </tr>
         </table>
         

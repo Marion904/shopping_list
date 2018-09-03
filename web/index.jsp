@@ -6,7 +6,7 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
+<%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -25,8 +25,19 @@
                 <c:choose>
                     <c:when test="${addedProduct}">
                         <c:import url="/WEB-INF/view/product.jsp"/>
+                        <br>
                     </c:when>
                 </c:choose>
+                                <c:choose>
+            <c:when test="${newQty}">
+                <sql:update var="result" dataSource="jdbc/shopping_list" >
+                    UPDATE PRODUCT 
+                    SET quantity = "${quantity}"
+                    WHERE id ="${productId}"
+                </sql:update>
+            </c:when>
+           
+        </c:choose>
                 <c:import url="/WEB-INF/view/products.jsp"/>
                 <c:import url="/WEB-INF/menu/menu.jsp"/>    
             </c:otherwise>

@@ -17,38 +17,71 @@
         <title>Shopping list</title>
     </head>
     <body>
-        <table border="1">        
 
+        <table border="1">        
+            
             <sql:query var="result" dataSource="jdbc/shopping_list" >
-                SELECT id,name,description,quantity,userId FROM PRODUCT
+                SELECT id,name,description,quantity,un FROM PRODUCT
             </sql:query>
 
             <table border="1">
                 <!-- column headers -->
                 <thead>
                     <tr>
-                        <c:forEach var="columnName" items="${result.columnNames}">
-                            <th><c:out value="${columnName}"/></th>
-                        </c:forEach>
+                        <th><c:out value="${result.columnNames[1]}"/>  </th>
+                        <th><c:out value="${result.columnNames[2]}"/>  </th>
+                        <th><c:out value="${result.columnNames[3]}"/>  </th>
+                        <th><c:out value="${result.columnNames[4]}"/>  </th>
                         <th>+</th>
                         <th>-</th>
+                        <td>modifier</td>
                         <th>Vider</th>
                     </tr>
                 </thead>
                 <!-- column data -->
                 <tbody>
-                <c:forEach var="row" items="${result.rowsByIndex}">
-                    <tr>
-                        <c:forEach var="column" items="${row}">
-                            <td><c:out value="${column}"/></td>
-                            <td>+</td>
-                            <td>-</td>
-                            <td>modifier</td>
-                            <td>Vider</td>
+                        <c:forEach var="row" items="${result.rowsByIndex}"> 
+                            <tr>                            
+                                <td>
+                                    <c:out value="${row[1]}"/>                                    
+                                </td>  
+                                <td>
+                                    <c:out value="${row[2]}"/>                                    
+                                </td>  
+                                <td>
+                                    <c:out value="${row[3]}"/>                                    
+                                </td>  
+                                <td>
+                                    <c:out value="${row[4]}"/>                                    
+                                </td>  
+                                <td>
+                                    <form action="addOne" method="post">
+                                    <input type="hidden" name="productId" value="${row[0]}" readonly> 
+                                    <input type="hidden" name="actual" value="${row[3]}" readonly> 
+                                    <input type="submit" name="plus" value="+">
+                                    </form>
+                                </td>  
+                                <td>
+                                    <form action="lessOne" method="get">
+                                    <input type="hidden" name="productID" value="${row[0]}"> 
+                                    <input type="submit" name="less" value="-">
+                                    </form>
+                                </td>
+                                <td>
+                                    <form action="update" method="get">
+                                    <input type="hidden" name="productID" value="${row[0]}"> 
+                                    <input type="submit" name="update" value="Modifier">
+                                    </form>
+                                </td>
+                                <td>
+                                    <form action="delete" method="get">
+                                    <input type="hidden" name="productID" value="${row[0]}"> 
+                                    <input type="submit" name="delete" value="Supprimer">
+                                    </form>
+                                </td>                                      
+                            </tr>
                         </c:forEach>
-                        
-                    </tr>
-                </c:forEach>
+                    
                 </tbody>
             </table>
     </body>

@@ -1,4 +1,3 @@
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -6,10 +5,8 @@
  */
 package com.mfont.product_mgt;
 
-import com.mfont.model.Product;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.HashMap;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -20,11 +17,16 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author accueil
  */
-
-
-@WebServlet(name = "product", urlPatterns = {"/product"})
-public class AddProduct extends HttpServlet {
-
+@WebServlet(name = "addOne", urlPatterns = {"/addOne"})
+public class addOne extends HttpServlet {
+private final static String VIEW_PAGE_URL = "/index.jsp";
+private static final String FIELD_ID="productId";
+private static final String FIELD_QTY="actual";
+private static final String FIELD_LESS="less";
+private static final String FIELD_UPDATE="update";
+private static final String FIELD_DELETE="delete";
+private String productId;
+private float qty,newQty;
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -34,16 +36,6 @@ public class AddProduct extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    private static final String VIEW_PAGE_URL="/index.jsp";
-    private static final String VIEW_RESULT_URL="/product.jsp";
-    private static final String FIELD_CAT="category";
-    private static final String FIELD_PDT="product";
-    private static final String FIELD_DESC="description";
-    private static final String FIELD_QTY="quantity";
-    private static final String FIELD_UNIT="unit";
-    private static final String ERROR_PDT="Il faut au moins indiquer le nom du produit";
-    private String category,name,description,unit;
-    private float quantity;
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -52,10 +44,10 @@ public class AddProduct extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet Product</title>");            
+            out.println("<title>Servlet addOne</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet Product at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet addOne at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -73,11 +65,13 @@ public class AddProduct extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.setAttribute("errorStatus", true);
-        request.setAttribute("addedProduct",false);
-        response.getWriter().append("Redirecting to form...");
+        productId= request.getParameter(FIELD_ID);
+        qty = Float.parseFloat(request.getParameter(FIELD_QTY));
+        newQty+=qty;
+        request.setAttribute("productId", productId);
+        request.setAttribute("newQty",true);
+        request.setAttribute("quantity", (newQty));
         this.getServletContext().getRequestDispatcher(VIEW_PAGE_URL).forward(request, response);
-        //processRequest(request, response);
     }
 
     /**
@@ -88,37 +82,16 @@ public class AddProduct extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        category= request.getParameter(FIELD_CAT);
-        name= request.getParameter(FIELD_PDT);
-        description= request.getParameter(FIELD_DESC);
-        quantity= Float.parseFloat(request.getParameter(FIELD_QTY));
-        unit= request.getParameter(FIELD_UNIT);
-        HashMap<String, String> errors=new HashMap<>();
-
-
-        if (name==null){
-            errors.put(FIELD_PDT,ERROR_PDT);
-            request.setAttribute("errors",errors);
-            request.setAttribute("actionMessage","Problème dans la saisie");
-            
-        }else{
-            Product product = new Product(category,name,description,quantity,unit);
-            //products.put(name,product);
-            request.setAttribute("errorStatus",false);
-            request.setAttribute("addedProduct",true);
-            request.setAttribute("product",product);
-            request.setAttribute("user",1);
-            
-        }
-        
-        
-        this.getServletContext().getRequestDispatcher(VIEW_PAGE_URL).include(request,response);
-        
+        productId= request.getParameter(FIELD_ID);
+        qty = Float.parseFloat(request.getParameter(FIELD_QTY));
+        newQty=qty+1;
+        request.setAttribute("productId", productId);
+        request.setAttribute("newQty",true);
+        request.setAttribute("quantity", (newQty));
+        this.getServletContext().getRequestDispatcher(VIEW_PAGE_URL).forward(request, response);        
 //processRequest(request, response);
     }
 

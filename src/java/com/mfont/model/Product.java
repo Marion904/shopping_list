@@ -10,17 +10,26 @@ package com.mfont.model;
  * @author accueil
  */
 public class Product {
-    String category,name,description;
+    String category,name,description,unit;
     float quantity;
 
     public Product() {
     }
 
-    public Product(String category, String name, String description, float quantity) {
+    public Product(String category, String name, String description, float quantity,String unit) {
         this.category = category;
         this.name = name;
         this.description = description;
         this.quantity = quantity;
+        this.unit = unit;
+    }
+
+    public String getUnit() {
+        return unit;
+    }
+
+    public void setUnit(String unit) {
+        this.unit = unit;
     }
 
     public Product(String name) {
