@@ -23,12 +23,13 @@
             </c:when>
             <c:otherwise>
                 <c:choose>
-                    <c:when test="${addedProduct}">
-                        <c:import url="/WEB-INF/view/product.jsp"/>
-                        <br>
-                    </c:when>
+                        <c:when test="${addedProduct}">
+                           <c:import url="/WEB-INF/view/product.jsp"/>
+                           <br>
+                       </c:when>   
+                  
                 </c:choose>
-                                <c:choose>
+            <c:choose>
             <c:when test="${newQty}">
                 <sql:update var="result" dataSource="jdbc/shopping_list" >
                     UPDATE PRODUCT 
@@ -36,7 +37,13 @@
                     WHERE id ="${productId}"
                 </sql:update>
             </c:when>
-           
+                    
+            <c:when test="${delete}">
+                <sql:update var="result" dataSource="jdbc/shopping_list" >
+                    DELETE FROM PRODUCT 
+                    WHERE id ="${productId}"
+                </sql:update>
+            </c:when>    
         </c:choose>
                 <c:import url="/WEB-INF/view/products.jsp"/>
                 <c:import url="/WEB-INF/menu/menu.jsp"/>    

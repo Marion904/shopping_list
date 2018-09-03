@@ -19,6 +19,10 @@
          INSERT INTO PRODUCT (name, description, quantity,category,userId,un)
          VALUES ("${product.name}","${product.description}",${product.quantity},"${product.category}",${user},"${product.unit}");
         </sql:update>
+        <h2>Produit : "${product.name}" ajouté</h1>
+        <c:redirect url="/product" >
+        </c:redirect>
+        <!--
          <table>
             <tr>
                 <th>Dernier ajout : </th>
@@ -39,6 +43,6 @@
                 <td><strong>${product.unit}</strong>
             </tr>
         </table>
-        
+        -->
     </body>
 </html>

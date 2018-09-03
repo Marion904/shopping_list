@@ -10,6 +10,7 @@ import com.mfont.model.Product;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
+import static java.util.Objects.isNull;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -42,8 +43,9 @@ public class AddProduct extends HttpServlet {
     private static final String FIELD_QTY="quantity";
     private static final String FIELD_UNIT="unit";
     private static final String ERROR_PDT="Il faut au moins indiquer le nom du produit";
+    private static final String ERROR_QTY="Il indiquer une quantité";
     private String category,name,description,unit;
-    private float quantity;
+    private float quantity=0;
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -93,13 +95,10 @@ public class AddProduct extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        category= request.getParameter(FIELD_CAT);
-        name= request.getParameter(FIELD_PDT);
-        description= request.getParameter(FIELD_DESC);
-        quantity= Float.parseFloat(request.getParameter(FIELD_QTY));
-        unit= request.getParameter(FIELD_UNIT);
+
         HashMap<String, String> errors=new HashMap<>();
 
+        name= request.getParameter(FIELD_PDT);
 
         if (name==null){
             errors.put(FIELD_PDT,ERROR_PDT);
@@ -107,6 +106,10 @@ public class AddProduct extends HttpServlet {
             request.setAttribute("actionMessage","Problème dans la saisie");
             
         }else{
+            category= request.getParameter(FIELD_CAT);
+            description= request.getParameter(FIELD_DESC);    
+            quantity= Float.parseFloat(request.getParameter(FIELD_QTY));      
+            unit= request.getParameter(FIELD_UNIT);
             Product product = new Product(category,name,description,quantity,unit);
             //products.put(name,product);
             request.setAttribute("errorStatus",false);

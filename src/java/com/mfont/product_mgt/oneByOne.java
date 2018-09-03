@@ -18,14 +18,15 @@ import javax.servlet.http.HttpServletResponse;
  * @author accueil
  */
 @WebServlet(name = "addOne", urlPatterns = {"/addOne"})
-public class addOne extends HttpServlet {
+public class oneByOne extends HttpServlet {
 private final static String VIEW_PAGE_URL = "/index.jsp";
 private static final String FIELD_ID="productId";
 private static final String FIELD_QTY="actual";
 private static final String FIELD_LESS="less";
+private static final String FIELD_SIGN="sign";
 private static final String FIELD_UPDATE="update";
 private static final String FIELD_DELETE="delete";
-private String productId;
+private String productId, sign;
 private float qty,newQty;
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -67,7 +68,12 @@ private float qty,newQty;
             throws ServletException, IOException {
         productId= request.getParameter(FIELD_ID);
         qty = Float.parseFloat(request.getParameter(FIELD_QTY));
-        newQty+=qty;
+        sign = request.getParameter(FIELD_SIGN);
+        if(sign.equals("plus")){
+            newQty=++qty;            
+        }else{
+            newQty=--qty;            
+        }
         request.setAttribute("productId", productId);
         request.setAttribute("newQty",true);
         request.setAttribute("quantity", (newQty));
@@ -86,12 +92,9 @@ private float qty,newQty;
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         productId= request.getParameter(FIELD_ID);
-        qty = Float.parseFloat(request.getParameter(FIELD_QTY));
-        newQty=qty+1;
         request.setAttribute("productId", productId);
-        request.setAttribute("newQty",true);
-        request.setAttribute("quantity", (newQty));
-        this.getServletContext().getRequestDispatcher(VIEW_PAGE_URL).forward(request, response);        
+        request.setAttribute("delete", true);
+        this.getServletContext().getRequestDispatcher(VIEW_PAGE_URL).forward(request, response);
 //processRequest(request, response);
     }
 

@@ -55,15 +55,18 @@
                                     <c:out value="${row[4]}"/>                                    
                                 </td>  
                                 <td>
-                                    <form action="addOne" method="post">
+                                    <form action="addOne" method="get">
                                     <input type="hidden" name="productId" value="${row[0]}" readonly> 
                                     <input type="hidden" name="actual" value="${row[3]}" readonly> 
+                                    <input type="hidden" name="sign" value="plus" readonly> 
                                     <input type="submit" name="plus" value="+">
                                     </form>
                                 </td>  
                                 <td>
-                                    <form action="lessOne" method="get">
-                                    <input type="hidden" name="productID" value="${row[0]}"> 
+                                   <form action="addOne" method="get">
+                                    <input type="hidden" name="productId" value="${row[0]}" readonly> 
+                                    <input type="hidden" name="actual" value="${row[3]}" readonly> 
+                                    <input type="hidden" name="sign" value="less" readonly> 
                                     <input type="submit" name="less" value="-">
                                     </form>
                                 </td>
@@ -74,8 +77,8 @@
                                     </form>
                                 </td>
                                 <td>
-                                    <form action="delete" method="get">
-                                    <input type="hidden" name="productID" value="${row[0]}"> 
+                                    <form action="addOne" method="post">
+                                    <input type="hidden" name="productId" value="${row[0]}" readonly>  
                                     <input type="submit" name="delete" value="Supprimer">
                                     </form>
                                 </td>                                      

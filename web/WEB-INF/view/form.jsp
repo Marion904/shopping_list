@@ -24,7 +24,7 @@
                 <label>Description</label>
                 <textarea name="description" rows="5" cols="40" value="${form['description']}"></textarea>
                 <label>Quantité</label>
-                <input type="number" name="quantity" class="requis" value="${form['quantité']}">
+                <input type="number" name="quantity" value="0">
                  <select name="unit">
                     <option value="${form['g']}">g.</option>
                     <option value="${form['kg']}">kg</option>
