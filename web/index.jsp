@@ -15,7 +15,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <title>Form to add a product</title>
+    <title>Shopping List</title>
 
     <!-- Bootstrap core CSS -->
     <link href="../../../../dist/css/bootstrap.min.css" rel="stylesheet">
@@ -32,11 +32,12 @@
             </c:when>
             <c:otherwise>
                 <c:choose>
-                        <c:when test="${addedProduct}">
-                              <sql:update var="result" dataSource="jdbc/shopping_list">
+                    <c:when test="${addedProduct}">
+                        <sql:update var="result" dataSource="jdbc/shopping_list">
          INSERT INTO PRODUCT (name, description, quantity,category,userId,un)
          VALUES ("${product.name}","${product.description}",${product.quantity},"${product.category}",${user},"${product.unit}");
         </sql:update>
+         
 
                            <br>
                        </c:when>   
@@ -57,8 +58,11 @@
                     WHERE id ="${productId}"
                 </sql:update>
             </c:when>    
+                    
+                    
         </c:choose>
                 <c:import url="/WEB-INF/view/products.jsp"/>
+                <br>
                 <c:import url="/WEB-INF/menu/menu.jsp"/>    
             </c:otherwise>
         </c:choose>

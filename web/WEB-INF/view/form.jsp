@@ -26,40 +26,48 @@
   <body>
       <div class="container">
         <a href="<c:url value="/cancel"/>">
-            <button  class="btn btn-lg btn-block btn-outline-primary" >Annuler et retourner à la liste de course</button>
+            <button  class="btn btn-lg btn-block btn-outline-primary" >Annuler et afficher la liste de course</button>
         </a>
 
+        <div class="text-center mb-4">
+            <p>${actionMessage}</p>
+        </div>
         <form class="form-signin" action="product" method="POST">
           <div class="text-center mb-4">
             <img class="mb-4" src="../../assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
             <h1 class="h3 mb-3 font-weight-normal">Que veux-tu ajouter?</h1>
 
           </div>
-          <p>Catégorie</p>
+          <p>Type de produit</p>
           <div class="form-label-group">
                     <input type="text" name="category" class="form-control" value="${form['catégorie']}">
           </div>
             <p>Produit</p>
+            <span class="error">${errors['product']}</span>
           <div class="form-label-group">
-                    <input type="text" name="product" class="requis" class="form-control" value="${form['produit']}"><span class="error">${errors['product']}</span>
+                <input type="text" name="product" class="requis" class="form-control" value="${form['produit']}">
           </div>
           <p>Description</p>
           <div class="form-label-group">
-                    <textarea name="description" rows="5" cols="40" class="form-control" value="${form['description']}"></textarea>
+                <textarea name="description" rows="5" cols="40" class="form-control" value="${form['description']}"></textarea>
           </div>
-          <p>Quantité</p>
+          <br>
+          <p>QT voulue</p>
+             <span class="error">${errors['quantity']}</span>
           <div class="form-label-group">
                     <input type="number" name="quantity"  class="form-control" value="0">
 
+          </div>
+          <div class="form-label-group">          
                            <select name="unit">
-                        <option value="${form['g']}">g.</option>
-                        <option value="${form['kg']}">kg</option>
-                        <option value="${form['unité']}">unité</option>
-                        <option value="${form['l']}">l</option>
-                        <option value="${form['dl']}">dl</option>
-                        <option value="${form['cl']}">cl</option>
-                        <option value="${form['ml']}">ml</option>
-                        <option value="${form['sachet']}">sachet</option>
+                        <option value="g">g.</option>
+                        <option value="kg">kg</option>
+                        <option value="unité">unité</option>
+                        <option value="l">l</option>
+                        <option value="dl">dl</option>
+                        <option value="cl">cl</option>
+                        <option value="ml">ml</option>
+                        <option value="sachet">sachet</option>
                       </select> 
            </div>
 

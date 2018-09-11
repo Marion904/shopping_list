@@ -11,14 +11,31 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+           <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" href="style.css">
-        <title>Menu</title>
-    </head>
-    <body><ul>
-            <li><a href="<c:url value="/product"/>">Ajouter un produit</a></li>
-            <li>Vider la liste</li>
-        </ul>
+         <!-- Bootstrap core CSS -->
+    <link href="../../../../dist/css/bootstrap.min.css" rel="stylesheet">
 
+    <!-- Custom styles for this template -->
+    <link href="floating-labels.css" rel="stylesheet">
+        <title>Menu</title>
+        
+    </head>
+    <body>
+        
+        <div class="container">
+            <a href="<c:url value="/product"/>">
+            <button>Ajouter un produit</button>
+            </a>
+            
+             <a href="<c:url value="/EmptyList"/>">
+            <button>Vider la liste</button>
+            </a>
+        </div>
         
     </body>
 </html>
